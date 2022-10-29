@@ -1,0 +1,26 @@
+<!-- _______________________________________________________ -->
+<!-- CODIGO PYTHON, USO DE ENLAZADO PARA PLANTILLA BASE-->
+{% extends "Template_Main/ViewTemplate_Main.html" %}
+
+<!-- _______________________________________________________ -->
+<!-- INDICA EL TITULO DINAMICO -->
+{% block titulo %} CrudProductCreate {% endblock %}
+
+<!-- _______________________________________________________ -->
+<!-- CONTENIDO DE HTML PRINCIPAL A TRAVEZ DEL USO DE PLANTILLAS-->
+{% block contenido %}
+
+    <div class="card">
+        <div class="card-header">
+            Crear producto
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Datos del producto</h4>
+            <!--INCLUCION DE FORMULARIO-->
+            {% include "Template_Crud/CrudForm.html" %}
+        </div>
+        <div class="card-footer text-muted">
+            Footer
+        </div>
+    </div>
+{% endblock %}

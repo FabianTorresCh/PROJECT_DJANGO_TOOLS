@@ -5,8 +5,25 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-
 # VISTA DE INICIO
-def DefView(request):
-    return HttpResponse("<h1>MENSAJE DE INICIO</h1>")
+def DefViewHome(request):
+    return render(request,"Template_Main/ViewHome.html")
+
+# VISTA DE NOSOTROS
+def DefViewAboutUs(request):
+    return render(request,"Template_Main/ViewAboutUs.html")
+
+# VISTA DE CRUD INDEX
+def DefViewCrudIndex(request):
+    return render(request,"Template_Crud/CrudIndex.html")
+
+# VISTA DE CRUD EDIT
+def DefViewCrudEdit(request):
+    return render(request,"Template_Crud/CrudEdit.html")
+
+# VISTA DE CRUD CREATE
+def DefViewCrudCreate(request):
+    return render(request,"Template_Crud/CrudCreate.html")
+
+
 

@@ -1,0 +1,71 @@
+<!-- _______________________________________________________ -->
+<!-- CODIGO PYTHON, USO DE ENLAZADO PARA PLANTILLA BASE-->
+{% extends "Template_Main/ViewTemplate_Main.html" %}
+
+<!-- _______________________________________________________ -->
+<!-- INDICA EL TITULO DINAMICO -->
+{% block titulo %} CrudIndexProductList {% endblock %}
+
+<!-- _______________________________________________________ -->
+<!-- CONTENIDO DE HTML PRINCIPAL A TRAVEZ DEL USO DE PLANTILLAS-->
+{% block contenido %}
+    <h1>VIEW CRUD INDEX</h1>
+    <h3>LISTA DE PRODUCTOS</h3>
+    <br><br>
+    <div class="card">
+
+        <div class="card-header">
+            Listar productos
+        </div>
+
+        <div class="card-body">
+            <h4 class="card-title">Productos en inventario</h4>
+
+            <div class="table-responsive">
+                <table class="table table-primary">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">NOMBRE</th>
+                            <th scope="col">DESCRIPCION</th>
+                            <th scope="col">VALOR</th>
+                            <th scope="col">INVENTARIO</th>
+                            <th scope="col">IMAGEN</th>
+                            <th scope="col">ACCION</th>                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="">
+                            <td scope="row">00001</td>
+                            <td>DJANGO</td>
+                            <td>FRAMEWORK PARA DESARROLLO WEB</td>
+                            <td>$100</td>
+                            <td>50</td>
+                            <td>IMAGEN.JPG</td>
+                            <th scope="col">
+                                <a class="btn btn-info" role="button" href="{% url 'CrudEdit' %}">Editar</a>
+                                |
+                                <a class="btn btn-danger" role="button" href="">Borrar</a>
+                            </th>
+
+                        </tr>
+                        <tr class="">
+                            <td scope="row">00002</td>
+                            <td>REACT</td>
+                            <td>FRAMEWORK PARA DESARROLLO WEB</td>
+                            <td>$200</td>
+                            <td>20</td>
+                            <td>IMAGEN.JPG</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+
+        </div>
+
+        <div class="card-footer text-muted">
+        </div>
+
+    </div>
+
+{% endblock %}

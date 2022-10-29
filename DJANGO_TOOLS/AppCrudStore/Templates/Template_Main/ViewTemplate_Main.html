@@ -1,0 +1,40 @@
+<!-- CODIGO PYTHON
+SE DEBE INDICAR AL DOCUMENTO EL INDICATIVO PLANTILLA-->
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>{% block titulo %} {% endblock %}</title> <!-- CODIGO PYTHON: CAMBIA EL NOMBRE DEL TITULO DEL DOCUMENTO-->
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand navbar-light bg-light">
+        <div class="nav navbar-nav">
+            <a class="nav-item nav-link active" href="{% url 'Home' %}" aria-current="page">HOME<span class="visually-hidden">(current)</span></a>
+            <a class="nav-item nav-link" href="{% url 'AboutUs' %}">NOSOTROS</a>
+            <a class="nav-item nav-link" href="{% url 'CrudIndex' %}">INICIO</a>
+            <a class="nav-item nav-link" href="{% url 'CrudCreate' %}">CREAR</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <!-- EL CODIGO DE LA SIGUIENTE LINEA, UTILIZA PALABRAS RESERVADAS, ASI QUE DAN PROPIEDAD AL CODIGO PYTHON -->
+                {% block contenido %} {% endblock %} <!-- CAMBIA EL CONTENIDO SEGUN CODIGO FUENTE -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+</body>
+
+</html>

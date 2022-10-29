@@ -1,0 +1,25 @@
+<!-- _______________________________________________________ -->
+<!-- CODIGO PYTHON, USO DE ENLAZADO PARA PLANTILLA BASE-->
+{% extends "Template_Main/ViewTemplate_Main.html" %}
+
+<!-- _______________________________________________________ -->
+<!-- INDICA EL TITULO DINAMICO -->
+{% block titulo %} ViewHome {% endblock %}
+
+<!-- _______________________________________________________ -->
+<!-- CONTENIDO DE HTML PRINCIPAL A TRAVEZ DEL USO DE PLANTILLAS-->
+{% block contenido %}
+
+<div class="row align-items-md-stretch">
+    <div class="col-md-12">
+        <div class="h-100 p-5 text-white bg-primary border rounded-3">
+            <h2>Bienvenido a la Aplicacion DRUD</h2>
+            <p>De inico al manejo del inventario a travez de esta aplicacion.</p>
+            <button class="btn btn-success" type="button">Iniciar</button>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
