@@ -74,10 +74,19 @@ WSGI_APPLICATION = 'DJANGO_TOOLS.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# MODIFICACION DE TIPO DE BASE DE DATOS
+"""AL UTILIZAR SQL, SE DEBE INSTALAR UN PAQUETE PIP A TRAVEZ DE LA CONSOLA DE COMANDOS
+1. pip list - PARA VERIFICAR EL LISTADO DE ELEMENTOS PIP CONTENIDOS
+2. pip install PyMySQL - SIN NO SE CUENTRA EL ELEMENTO, ESCRIBIR EL CODIGO PARA INSTALAR
+"""
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': "DataBase_Test",
+        'USER': "root",
+        'PASSWORD': "root",
+        'HOST': "localhost",
+        'PORT': "3306"
     }
 }
 
