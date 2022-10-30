@@ -3,8 +3,23 @@ EMAIL: fabian.torresch@gmail.com
 
 1. CONFIGURAR LA LISTA DE APLICACIONES
 2. CONFIGURAR LA CONEXION DE LA BASE DE DATOS
-3. IMPORTAR ELEMENTO pymysql AL ARCHIVO __init__
+3. IMPORTAR ELEMENTO pymysql AL ARCHIVO __init__.py del proyecto, mas no de las aplicaciones
 
+____________________________________________________________
+MIGRACION DE MODELOS
+1. Una vez creado los modelos necesarios para la base de datos se debe realizar la migracion
+2. Creacoin de migracion:  python manage.py makemigrations
+3. Carga de migracion a base de datos: python manage.py migrate
+4. Migra los datos y configuraciones del proyecto, como el administracion y usuarios
+5. Registrar el modelo en el archivo admin de la aplicacion
+6. Se debe crear el usuario de administrador [ manage.py createsuperuser ]
+
+CORRECION DE MODELO Y MODIFICACION DE BASE DE DATOS
+1. Si se modifico el modelo, se debe realizar una nueva migracion, solo valido para modificar el nombre de la columna en la tabla
+2. Realizar paso anterior y aprobacion
+
+CREACION DE USUARIO ADMINISTRADOR
+1. python manage.py createsuperusuer
 ____________________________________________________________
 ELEMENTOS NECESARIOS
 
