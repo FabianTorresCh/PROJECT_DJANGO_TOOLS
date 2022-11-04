@@ -1,11 +1,19 @@
 from django.contrib import admin
 from django.urls import path
+
+# CONFIGURACION PARA VISUALIZACION DE ELEMENTOS IMAGENES
+from django.conf import settings
+from django.contrib.staticfiles.urls import static
+# IMPORTACION DE VISTAS
 from AppCrudStore.views import \
     DefViewHome, \
     DefViewAboutUs, \
     DefViewCrudIndex, \
     DefViewCrudEdit, \
     DefViewCrudCreate
+
+# !!! NOTIFICACION
+print("\n>>> URL´S AppCrudStore\n")
 
 urlpatterns = [
     # DIRECCION TEMPLATE ADMIN
@@ -26,8 +34,7 @@ urlpatterns = [
     # DIRECCION DE CRUD CREATE
     path('UrlAppCrudStore_Create/', DefViewCrudCreate, name="CrudCreate")
 
-
-
-
-
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+""" ELEMENTO NECESARIO PARA VISUALIZACION DE ELEMENTOS
+** static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) **
+"""

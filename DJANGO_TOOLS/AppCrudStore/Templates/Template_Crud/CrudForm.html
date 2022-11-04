@@ -1,11 +1,32 @@
-    <!-- FROMULARIO -->
-    <form enctype="multipart/form-data" method="post">
+<!-- FROMULARIO -->
+<form enctype="multipart/form-data" method="post">
+
+    <!-- TOQUEN O LLAVE QUE PERMITE LA INTERACCION Y LA PERTENECIA DEL FORMULARIO -->
+    {% csrf_token %}
+
+    <!-- CICLO PARA FORMULARIO-->
+    {% for FormCampo in ObjForm_Html %}
         <div class="mb-3">
-            <label for="" class="form-label">Codigo</label>
-            <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="ID">
+            <br>
+            <!-- PARA VISUALIZAR EL ELEMENTO DEL OBJETO LA QUE SE HACE REFERENCIA
+            SE HACEL EL USO DE LA ETIQUETA PARA VISUALIZAR EL NOMBRE DEL ATRIBUTO ASIGNADO 
+            DEL MODELO EN USO "verbose_name" -->
+            <label for="" class="form-label">{{ FormCampo.label }}</label>
+            <br>
 
-            <label for="" class="form-label">Nombre</label>
-            <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Nombre completo">
-
+            <!-- !!! IMPORTANTE
+            EN LA PARTE DE "name", POR CADA VES QUE EL CICLO GENERE UNA CASILLA, AÑADE
+            LA PROPIEDAD A LA NUEVA CASILLA SEGUN LA PARTE DEL MODEL GENERADA -->
+            <input 
+                type="{{FormCampo.field.widget.input_type}}"
+                class="form-control" 
+                name="{{FormCampo.name}}" 
+                id="" 
+                aria-describedby="helpId" 
+                placeholder="{{ FormCampo.label }}">
+            <hr>
         </div>
-    </form>
+    {% endfor %}
+
+
+</form>

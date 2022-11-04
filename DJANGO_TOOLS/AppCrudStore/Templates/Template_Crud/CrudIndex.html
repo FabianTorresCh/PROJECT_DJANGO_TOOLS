@@ -34,28 +34,27 @@
                             <th scope="col">Accion</th>                        </tr>
                     </thead>
                     <tbody>
+
+                        <!-- CICLO DE VISUALIZACION DE PRODUCTOS -->
+                        {% for Product in Products_All %}
                         <tr class="">
-                            <td scope="row">00001</td>
-                            <td>DJANGO</td>
-                            <td>FRAMEWORK PARA DESARROLLO WEB</td>
-                            <td>$100</td>
-                            <td>50</td>
-                            <td>IMAGEN.JPG</td>
+                            <td scope="row">{{Product.ProductId}}</td>
+                            <td>{{Product.ProductName}}</td>
+                            <td>{{Product.ProductDescription}}</td>
+                            <td>{{Product.ProductValue}}</td>
+                            <td>{{Product.ProductInventory}}</td>
+                            <td>
+                                <!-- ERROR, NO SE VISUALIZA IMAGENES, POSIBLE ERROR EN LA ASIGNACION DE RUTA Y POSIBLE MALA DESIGNACION DE PERMISOS -->
+                                <img src="{{Product.ProductImage.url}}" height="100" width="100">
+                            </td>
                             <th scope="col">
                                 <a class="btn btn-info" role="button" href="{% url 'CrudEdit' %}">Editar</a>
                                 |
                                 <a class="btn btn-danger" role="button" href="">Borrar</a>
                             </th>
+                        </tr>
+                        {% endfor %}
 
-                        </tr>
-                        <tr class="">
-                            <td scope="row">00002</td>
-                            <td>REACT</td>
-                            <td>FRAMEWORK PARA DESARROLLO WEB</td>
-                            <td>$200</td>
-                            <td>20</td>
-                            <td>IMAGEN.JPG</td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
