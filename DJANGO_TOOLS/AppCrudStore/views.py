@@ -1,13 +1,15 @@
 #VISTA DE APLICACION
 
 # IMPORTACION DE BIBLIOTECAS
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 # IMPORTACION DE MODELOS
 from AppCrudStore.models import ClassProduct
 # IMPORTACION DE FORMULARIO
 from AppCrudStore.Forms import ClassFormProduct
 
+# ---------------------------------------------------------
+print("\n>>> OPEN view.py")
 
 # ---------------------------------------------------------
 # VERIFICACION DE IMPORTACION DE ELEMENTOS
@@ -23,8 +25,7 @@ print("ClassProduct: [",ClassProduct,"]"," / Tipo: [",type(ClassProduct),"]\n"
 def DefViewHome(request):
 
     # !!! NOTIFICACION
-    print("\n>>> VIEW HOME\n")
-
+    print("\n>>> DefViewHome\n")
     return render(request,"Template_Main/ViewHome.html")
 
 
@@ -33,8 +34,7 @@ def DefViewHome(request):
 def DefViewAboutUs(request):
 
     # !!! NOTIFICACION
-    print("\n>>> VIEW ABOUT US\n")
-
+    print("\n>>> DefViewAboutUs\n")
     return render(request,"Template_Main/ViewAboutUs.html")
 
 
@@ -43,7 +43,7 @@ def DefViewAboutUs(request):
 def DefViewCrudIndex(request):
 
     # !!! NOTIFICACION
-    print("\n>>> VIEW INDEX\n")
+    print("\n>>> DefViewCrudIndex\n")
 
     # ELEMENTOS DE INTERACION PARA EL HTML
     ModelClassProduct = ClassProduct.objects.all()
@@ -58,6 +58,10 @@ def DefViewCrudIndex(request):
 # ---------------------------------------------------------
 # VISTA DE CRUD EDIT
 def DefViewCrudEdit(request):
+
+    # !!! NOTIFICACION
+    print("\n>>> DefViewCrudEdit\n")
+
     return render(request,"Template_Crud/CrudEdit.html")
 
 
@@ -65,10 +69,24 @@ def DefViewCrudEdit(request):
 # VISTA DE CRUD CREATE
 def DefViewCrudCreate(request):
 
+    # !!! NOTIFICACION
+    print("\n>>> DefViewCrudCreate\n")
+
     # OBJETO FORMULARIO
     print("\n>>> APERTURA DE FORMULARIO DE PRODUCTOS\n")
-    ObjForm = ClassFormProduct(request.POST or None)
-    print("\n>>> CIERRE DE FORMULARIO DE PRODUCTOS\n")
+    # SE ENVIA EL OBJETO TIPO FORMULARIO PARA LA INTERACCION EN LA VISTA
+    ObjForm = ClassFormProduct(request.POST or None, request.FILES or None)
+    print("\n>>> ObjForm: [",ObjForm,"]\n")
+
+    print("\n>>> VALID ObjForm \n")
+    if ObjForm.is_valid():
+        ObjForm.save()
+        print("\n>>> VALID SAVE CORRECT ObjForm\n")
+
+        # EL METODO redirect, REDIRECCIONA AL USUARIO UNA VEZ REALIZADA LA ACCION
+        return redirect('/UrlIncludeAppCrudStore/UrlAppCrudStore_Index/')
+    else:
+        print("\n>>> VALID SAVE ERROR ObjForm\n")
 
     return render(request,"Template_Crud/CrudCreate.html", {'ObjForm_Html':ObjForm})
 

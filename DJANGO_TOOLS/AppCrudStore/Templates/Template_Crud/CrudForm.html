@@ -6,6 +6,8 @@
 
     <!-- CICLO PARA FORMULARIO-->
     {% for FormCampo in ObjForm_Html %}
+
+        <!-- ELEMENTOS PRINCIPALES DEL FORMULARIO -->
         <div class="mb-3">
             <br>
             <!-- PARA VISUALIZAR EL ELEMENTO DEL OBJETO LA QUE SE HACE REFERENCIA
@@ -21,12 +23,23 @@
                 type="{{FormCampo.field.widget.input_type}}"
                 class="form-control" 
                 name="{{FormCampo.name}}" 
+                placeholder="{{FormCampo.label}}"
                 id="" 
-                aria-describedby="helpId" 
-                placeholder="{{ FormCampo.label }}">
+                aria-describedby="helpId">
             <hr>
         </div>
+        
+        <!-- CUADRO DE MENSAJES 
+        PERMITE RECONOCER ERRORES AL INGRESAR INFORMACION EN LAS CASILLAS
+        Y MOSTRAR MENSAJES DE ALERTA EN LA PANTALLA
+        -->
+        <div class="col-12 help-tex">
+            {{FormCampo.errors}}
+        </div>
+
     {% endfor %}
 
+    <br>
+    <div><input name="" id="" class="btn btn-success" type="submit" value="Enviar informacion"></div>
 
 </form>
