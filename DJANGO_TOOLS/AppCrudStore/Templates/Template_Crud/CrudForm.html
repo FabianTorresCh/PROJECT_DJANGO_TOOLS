@@ -16,16 +16,25 @@
             <label for="" class="form-label">{{ FormCampo.label }}</label>
             <br>
 
+            <!-- METODO QUE PERMITE LA VERIFICACION DEL TIPO DE DATO, NO ESTA FUNCIONANDO-->
+            {% if FormCampo.field.widget.input_type == 'file' and FormCampo.value %}
+                <img src="{{MEDIA_URL}}/AppCrudStore/Images/{{FormCampo.value}}" alt="">
+            {% endif %}
+
             <!-- !!! IMPORTANTE
             EN LA PARTE DE "name", POR CADA VES QUE EL CICLO GENERE UNA CASILLA, AÑADE
-            LA PROPIEDAD A LA NUEVA CASILLA SEGUN LA PARTE DEL MODEL GENERADA -->
+            LA PROPIEDAD A LA NUEVA CASILLA SEGUN LA PARTE DEL MODEL GENERADA 
+            1. PARA INDICAR EL VALOR POR DEFECTO SE AGREGA EN value default:''
+            -->
             <input 
                 type="{{FormCampo.field.widget.input_type}}"
                 class="form-control" 
                 name="{{FormCampo.name}}" 
                 placeholder="{{FormCampo.label}}"
+                value="{{FormCampo.value | default:''}}"
                 id="" 
-                aria-describedby="helpId">
+                aria-describedby="helpId"
+            >
             <hr>
         </div>
         
@@ -40,6 +49,10 @@
     {% endfor %}
 
     <br>
-    <div><input name="" id="" class="btn btn-success" type="submit" value="Enviar informacion"></div>
+
+    <div class="row align-items-md-stretch">
+        <div class="col-md-6"><input name="" id="" class="btn btn-success" type="submit" value="Enviar" width="100%"></div>
+        <div class="col-md-6"><a name="HtmlActionCancel" id="" class="btn btn-primary" href="{% url 'CrudIndex' %}" role="button" width="50%">Cancelar</a></div>
+    </div>
 
 </form>

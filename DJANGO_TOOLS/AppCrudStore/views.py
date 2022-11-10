@@ -19,7 +19,6 @@ print("ClassProduct: [",ClassProduct,"]"," / Tipo: [",type(ClassProduct),"]\n"
      "ClassFormProduct: [",ClassFormProduct,"]"," / Tipo: [",type(ClassFormProduct),"]\n")
 
 
-
 # ---------------------------------------------------------
 # VISTA DE INICIO
 def DefViewHome(request):
@@ -57,12 +56,23 @@ def DefViewCrudIndex(request):
 
 # ---------------------------------------------------------
 # VISTA DE CRUD EDIT
-def DefViewCrudEdit(request):
+# SE MODIFICA EL TIPO DE SOLICITUD DEL LA FUNCION VISTA, SE LE AGREGA LA VARIABLE VarProductId
+def DefViewCrudEdit(request, VarProductId):
 
     # !!! NOTIFICACION
     print("\n>>> DefViewCrudEdit\n")
-
-    return render(request,"Template_Crud/CrudEdit.html")
+    # OBTIENE INFORMACION DE LA TABLA MODEL SEGUN EL ID
+    ObjProductEdit = ClassProduct.objects.get(ProductId=VarProductId)
+    #PASA LA INFORMACION DEL PRODUCTO SELECCIONADO AL FORMULARIO
+    ObjForm = ClassFormProduct(request.POST or None, request.FILES or None, instance=ObjProductEdit)
+    # CONDICIONAL PARA EDITAR FORMULARIO
+    if ObjForm.is_valid() and request.POST:
+        ObjForm.save()
+        print("\n>>> DefViewCrudEdit/EditForm_Save\n")
+        return redirect('/UrlIncludeAppCrudStore/UrlAppCrudStore_Index/')
+    else:
+        print("")
+    return render(request,"Template_Crud/CrudEdit.html", {'ObjForm_Html':ObjForm})
 
 
 # ---------------------------------------------------------
@@ -81,14 +91,21 @@ def DefViewCrudCreate(request):
     print("\n>>> VALID ObjForm \n")
     if ObjForm.is_valid():
         ObjForm.save()
-        print("\n>>> VALID SAVE CORRECT ObjForm\n")
-
+        print("\n>>> DefViewCrudCreate/ [VALID SAVE CORRECT ObjForm]\n")
         # EL METODO redirect, REDIRECCIONA AL USUARIO UNA VEZ REALIZADA LA ACCION
         return redirect('/UrlIncludeAppCrudStore/UrlAppCrudStore_Index/')
     else:
-        print("\n>>> VALID SAVE ERROR ObjForm\n")
+        print("\n>>> DefViewCrudCreate/ [VALID SAVE ERROR ObjForm]\n")
 
     return render(request,"Template_Crud/CrudCreate.html", {'ObjForm_Html':ObjForm})
 
 
+# ---------------------------------------------------------
+# VISTA DE CRUD DELETE
+def DefViewDelete(request, VarProductId):
 
+    # IDENTIFICAR OBJETO POR ID PARA ELIMINAR
+    ObjProductDelate = ClassProduct.objects.get(ProductId=VarProductId)
+    # ELIMINACION DE ELEMENTO
+    ObjProductDelate.delete()
+    return redirect('/UrlIncludeAppCrudStore/UrlAppCrudStore_Index/')

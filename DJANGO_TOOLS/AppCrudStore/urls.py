@@ -10,7 +10,8 @@ from AppCrudStore.views import \
     DefViewAboutUs, \
     DefViewCrudIndex, \
     DefViewCrudEdit, \
-    DefViewCrudCreate
+    DefViewCrudCreate, \
+    DefViewDelete
 
 # !!! NOTIFICACION
 print("\n>>> URL´S AppCrudStore\n")
@@ -30,11 +31,17 @@ urlpatterns = [
 
     # DIRECCION DE CRUD EDIT
     path('UrlAppCrudStore_Edit/', DefViewCrudEdit, name="CrudEdit"),
+    path('UrlAppCrudStore_Edit/<int:VarProductId>', DefViewCrudEdit, name="CrudEdit"),
 
     # DIRECCION DE CRUD CREATE
-    path('UrlAppCrudStore_Create/', DefViewCrudCreate, name="CrudCreate")
+    path('UrlAppCrudStore_Create/', DefViewCrudCreate, name="CrudCreate"),
+
+    # DIRECCION DE CRUD DELETE
+    path('UrlAppCrudStore_Delete/<int:VarProductId>',DefViewDelete, name="CrudDelete")
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-""" ELEMENTO NECESARIO PARA VISUALIZACION DE ELEMENTOS
+
+"""
+ELEMENTO NECESARIO PARA VISUALIZACION DE ELEMENTOS
 ** static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) **
 """

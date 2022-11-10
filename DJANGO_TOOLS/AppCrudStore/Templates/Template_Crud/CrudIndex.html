@@ -31,7 +31,8 @@
                             <th scope="col">Valor</th>
                             <th scope="col">Inventario</th>
                             <th scope="col">Imagen</th>
-                            <th scope="col">Accion</th>                        </tr>
+                            <th scope="col">Accion</th>
+                        </tr>
                     </thead>
                     <tbody>
 
@@ -48,9 +49,10 @@
                                 <img src="{{Product.ProductImage.url}}" height="100" width="100">
                             </td>
                             <th scope="col">
-                                <a class="btn btn-info" role="button" href="{% url 'CrudEdit' %}">Editar</a>
+                                <!-- SE COMUNICA CON EL FORMULARIO A TRAVEZ DE UN NUMERO O ID EN LA URL ** href="{% url 'CrudEdit' Product.ProductId %} ** -->
+                                <a class="btn btn-info" role="button" href="{% url 'CrudEdit' Product.ProductId %}">Editar</a>
                                 |
-                                <a class="btn btn-danger" role="button" href="">Borrar</a>
+                                <a class="btn btn-danger" role="button" href="{% url 'CrudDelete' Product.ProductId %}">Borrar</a>
                             </th>
                         </tr>
                         {% endfor %}
